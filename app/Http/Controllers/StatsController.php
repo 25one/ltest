@@ -27,7 +27,6 @@ class StatsController extends Controller
      */
     public function stats()
     {
-        //$stats['all'] = $this->redis->get('test_database_test_cache:api-total-requests');
         $stats['all'] = RedisFacade::getAll($this->redis);
         
         if (! $stats) {
@@ -48,7 +47,6 @@ class StatsController extends Controller
      */
     public function statsMy()
     {
-        //$stats['user'] = $this->redis->get('test_database_test_cache:api:users:' . auth()->user()->id);
         $stats['user'] = RedisFacade::getOne($this->redis, auth()->user()->id);
         
         if (! $stats) {
